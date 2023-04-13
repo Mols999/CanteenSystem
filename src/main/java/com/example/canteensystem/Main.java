@@ -2,26 +2,56 @@ package com.example.canteensystem;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        CanteenService canteenService = new CanteenService();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
-        fxmlLoader.setController(new LoginController(canteenService, stage));
+    private Stage primaryStage;
+    private final CanteenService canteenService;
 
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Canteen System");
-        stage.setScene(scene);
-        stage.show();
+    public Main() {
+        // Initialize the CanteenService instance
+        canteenService = new CanteenService();
     }
 
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        showLoginScreen();
+    }
+
+    public void showLoginScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/canteensystem/login.fxml"));
+            loader.setControllerFactory(param -> new LoginController(canteenService, primaryStage));
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void showInventoryManagementScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("inventory_management.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

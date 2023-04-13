@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="200" prefWidth="300">
-    <Label text="Employee ID:" layoutX="25" layoutY="50"/>
-    <TextField fx:id="employeeIdField" layoutX="100" layoutY="45"/>
-    <Button text="Login" layoutX="130" layoutY="100" onAction="#handleLogin"/>
+            fx:controller="com.example.canteensystem.LoginController"
+            prefHeight="300" prefWidth="400">
+    <children>
+        <VBox alignment="CENTER" layoutX="100" layoutY="75" spacing="10">
+            <children>
+                <Label text="Username:" />
+                <TextField fx:id="usernameField" />
+                <Label text="Password:" />
+                <PasswordField fx:id="passwordField" />
+                <Button text="Login" onAction="#handleLogin" />
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
