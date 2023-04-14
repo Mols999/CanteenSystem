@@ -41,7 +41,7 @@ public class DB {
             port = props.getProperty("port", "1433");
             databaseName = props.getProperty("databaseName");
             userName = props.getProperty("userName", "sa");
-            password = props.getProperty("password");
+            password = props.getProperty("password","1234");
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             System.out.println("Database Ready");
 
@@ -52,7 +52,7 @@ public class DB {
 
     private static void connect() {
         try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+port+";databaseName="+databaseName, userName, password);
+            con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8:"+port+";databaseName="+databaseName, userName, password);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -187,7 +187,7 @@ public class DB {
     }
 
 
-    public static boolean createEmployee(int employeeId, String name, double balance) {
+    public static boolean createEmployee(int employeeId, String name, double balance, String password, boolean isAdmin) {
         boolean success = false;
         try {
             connect();
@@ -204,6 +204,31 @@ public class DB {
             disconnect();
         }
         return success;
+    }
+
+    public static Employee login(int employeeId, String password) {
+        Employee employee = null;
+        try {
+            connect();
+            String sql = "SELECT MedarbejderNummer, Fornavn, Efternavn, PengePaaKonto, Password, CASE WHEN Admin.MedarbejderNummer IS NULL THEN 0 ELSE 1 END as IsAdmin FROM Medarbejder LEFT JOIN Admin ON Medarbejder.MedarbejderNummer = Admin.MedarbejderNummer WHERE Medarbejder.MedarbejderNummer = ? AND Password = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, employeeId);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String firstName = rs.getString("Fornavn");
+                String lastName = rs.getString("Efternavn");
+                double balance = rs.getDouble("PengePaaKonto");
+                boolean isAdmin = rs.getBoolean("IsAdmin");
+                employee = new Employee(employeeId, firstName, lastName, balance, password, isAdmin);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error in login method in DB class: " + e.getMessage());
+        } finally {
+            disconnect();
+        }
+        return employee;
     }
 
     public static boolean createProduct(int productId, String name, double price, int stock) {

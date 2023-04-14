@@ -7,12 +7,15 @@ public class Employee {
     private double balance;
     private String password;
 
-    public Employee(int employeeId, String firstName, String lastName, double balance, String password) {
+    private boolean isAdmin;
+
+    public Employee(int employeeId, String firstName, String lastName, double balance, String password, boolean isAdmin) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.balance = balance;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public int getEmployeeId() {
@@ -53,5 +56,12 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

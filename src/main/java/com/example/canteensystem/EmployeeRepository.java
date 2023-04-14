@@ -22,7 +22,6 @@ public class EmployeeRepository {
                     String lastName = resultSet.getString("Efternavn");
                     double balance = resultSet.getDouble("PengePaaKonto");
                     String password = resultSet.getString("Password");
-                    employee = new Employee(employeeId, firstName, lastName, balance, password);
                 }
             }
         } catch (SQLException e) {
