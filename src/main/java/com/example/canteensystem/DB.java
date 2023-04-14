@@ -50,6 +50,21 @@ public class DB {
         }
     }
 
+    public class DatabaseConnector {
+
+        private static final String CONNECTION_URL = "jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234";
+
+        public static Connection getConnection() {
+            Connection connection = null;
+            try {
+                connection = DriverManager.getConnection(CONNECTION_URL);
+            } catch (SQLException e) {
+                System.out.println("Error connecting to the database: " + e.getMessage());
+            }
+            return connection;
+        }
+    }
+
     private static void connect() {
         try {
             con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8:"+port+";databaseName="+databaseName, userName, password);

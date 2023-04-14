@@ -11,7 +11,7 @@ public class EmployeeRepository {
         Employee employee = null;
         String query = "SELECT * FROM Medarbejder WHERE MedarbejderNummer = ?";
 
-        try (Connection connection = DatabaseConnector.getConnection();
+        try (Connection connection = DB.DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, employeeId);
