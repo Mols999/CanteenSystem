@@ -10,10 +10,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
     private int employeeId;
+    private List<CartItem> cartItems = new ArrayList<>();
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
@@ -58,6 +61,9 @@ public class Main extends Application {
     public void loadMainLayout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainLayout.fxml"));
         Parent root = loader.load();
+        MainLayoutController controller = loader.getController();
+        controller.setMain(this);
+        controller.setCartItems(cartItems);
         primaryStage.setScene(new Scene(root));
     }
 }

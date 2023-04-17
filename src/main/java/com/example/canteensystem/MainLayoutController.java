@@ -21,11 +21,40 @@ public class MainLayoutController {
     private Medarbejder currentUser;
     private List<CartItem> cartItems = new ArrayList<>();
 
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public void setMain(Main main) {
+    }
+    @FXML
+    private Button MilkBind;
+    @FXML
+    private Button BottleWaterBind;
+    @FXML
+    private Button CocaColaBind;
+    @FXML
+    private Button TodayMealBind;
+    @FXML
+    private Button SandwichBind;
+    @FXML
+    private Button CakeBind;
+    @FXML
+    private Button CoffeeBind;
 
 
     public void initialize() {
         // Set the current user for testing purposes
         currentUser = getUserFromDatabase(1); // Replace 1 with the desired user ID
+
+        // Bind the product data to the buttons
+        MilkBind.setText("Milk - " + 10.00 + " kr");
+        BottleWaterBind.setText("Bottle Water - " + 10.00 + " kr");
+        CocaColaBind.setText("Coca Cola - " + 15.00 + " kr");
+        TodayMealBind.setText("Today Meal - " + 45.00 + " kr");
+        SandwichBind.setText("Sandwich - " + 30.00 + " kr");
+        CakeBind.setText("Cake - " + 15.00 + " kr");
+        CoffeeBind.setText("Coffee - " + 10.00 + " kr");
     }
 
     @FXML
@@ -42,13 +71,13 @@ public class MainLayoutController {
             case "Milk":
                 product = new Vare(1, "Milk", 10.00, 50);
                 break;
-            case "Bottlewater":
+            case "Bottle Water":
                 product = new Vare(2, "Bottle water", 10.00, 100);
                 break;
-            case "CocaCola":
+            case "Coca Cola":
                 product = new Vare(3, "Coca Cola", 15.00, 65);
                 break;
-            case "Todaymeal":
+            case "Today Meal":
                 product = new Vare(4, "Today meal", 45.00, 200);
                 break;
             case "Sandwich":
