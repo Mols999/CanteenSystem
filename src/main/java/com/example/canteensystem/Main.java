@@ -13,6 +13,12 @@ import java.sql.DriverManager;
 
 public class Main extends Application {
 
+    private int employeeId;
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     private Stage primaryStage;
 
     @Override

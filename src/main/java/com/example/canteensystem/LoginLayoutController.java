@@ -32,12 +32,11 @@ public class LoginLayoutController {
 
         if (isValidCredentials(username, password)) {
             try {
+                main.setEmployeeId(Integer.parseInt(username));
                 main.loadMainLayout();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            actionTarget.setText("Invalid credentials");
         }
     }
 
