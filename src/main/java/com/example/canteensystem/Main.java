@@ -29,7 +29,6 @@ public class Main extends Application {
 
 
     }
-
     public class DatabaseConnectionTest {
         public static void main(String[] args) {
             try {
