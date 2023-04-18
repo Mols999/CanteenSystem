@@ -1,4 +1,9 @@
 package com.example.canteensystem;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 public class Medarbejder {
     private int medarbejderNummer;
     private String fornavn;
@@ -12,6 +17,17 @@ public class Medarbejder {
         this.efternavn = efternavn;
         this.pengePaaKonto = pengePaaKonto;
         this.password = password;
+    }
+
+    public void updateBalanceInDatabase() {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE Medarbejder SET PengePaaKonto = " + getPengePaaKonto() + " WHERE MedarbejderNummer = " + getMedarbejderNummer());
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Getters and setters for each field

@@ -1,5 +1,9 @@
 package com.example.canteensystem;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 public class Vare {
     private int vareId;
     private String navn;
@@ -13,37 +17,27 @@ public class Vare {
         this.antal = antal;
     }
 
-    // Getters and setters for each field
 
-    public int getVareId() {
-        return vareId;
-    }
+    public boolean updateProductStock(int purchasedQuantity) {
+        boolean success = false;
 
-    public void setVareId(int vareId) {
-        this.vareId = vareId;
-    }
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
+            Statement statement = connection.createStatement();
 
-    public String getNavn() {
-        return navn;
-    }
+            String updateStockSql = "UPDATE Vare SET Antal = Antal - " + purchasedQuantity + " WHERE VareId = " + this.vareId;
+            int rowsAffected = statement.executeUpdate(updateStockSql);
 
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
+            if (rowsAffected > 0) {
+                success = true;
+                this.antal -= purchasedQuantity;
+            }
 
-    public double getPris() {
-        return pris;
-    }
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    public void setPris(double pris) {
-        this.pris = pris;
-    }
-
-    public int getAntal() {
-        return antal;
-    }
-
-    public void setAntal(int antal) {
-        this.antal = antal;
+        return success;
     }
 }

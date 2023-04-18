@@ -13,6 +13,7 @@
                 <Label text="Password:" />
                 <PasswordField fx:id="passwordField" />
                 <Button text="Login" onAction="#handleSubmitButtonAction" />
+                <Label fx:id="errorLabel" text="" textFill="RED" />
             </children>
         </VBox>
     </children>

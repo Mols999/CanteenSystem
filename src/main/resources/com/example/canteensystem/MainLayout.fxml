@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.canteensystem.MainLayoutController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.canteensystem.ShoppingGUIController">
     <children>
         <GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0">
             <columnConstraints>
@@ -40,6 +40,8 @@
                     <children>
                         <Button fx:id="purchaseButton" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" text="Purchase" onAction="#handlePurchaseClick" />
                         <Label fx:id="purchaseStatusLabel" text="Purchase Status" />
+                        <Label fx:id="totalPriceLabel" text="Total Price: 0.00 kr" />
+                        <Button text="Go to Inventory Management" onAction="#handleGoToAdminLayout" />
                         <Button fx:id="resetCartButton" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" text="Reset Cart" onAction="#handleResetCartClick" />
                     </children>
                 </VBox>

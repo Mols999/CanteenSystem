@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.canteensystem.InventoryManagementController"
+            prefHeight="400" prefWidth="600">
+    <Label text="Inventory Management" layoutX="225" layoutY="20"/>
+    <TableView fx:id="inventoryTable" layoutX="50" layoutY="60" prefHeight="300" prefWidth="500">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="75"/>
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="100"/>
+        </columns>
+    </TableView>
+    <Button fx:id="reorderButton" text="Reorder" layoutX="425" layoutY="375" onAction="#handleReorder"/>
+    <Button text="Back" layoutX="25" layoutY="375" onAction="#handleBack"/>
+</AnchorPane>

@@ -1,6 +1,5 @@
 package com.example.canteensystem;
 
-import com.example.canteensystem.LoginLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,13 +9,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
 
     private int employeeId;
-    private List<CartItem> cartItems = new ArrayList<>();
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
@@ -28,6 +24,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         loadLoginLayout();
+
+
     }
 
     public class DatabaseConnectionTest {
@@ -56,14 +54,5 @@ public class Main extends Application {
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-    public void loadMainLayout() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainLayout.fxml"));
-        Parent root = loader.load();
-        MainLayoutController controller = loader.getController();
-        controller.setMain(this);
-        controller.setCartItems(cartItems);
-        primaryStage.setScene(new Scene(root));
     }
 }
