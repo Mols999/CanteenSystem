@@ -3,6 +3,7 @@ package com.example.canteensystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -137,20 +138,19 @@ public class ShoppingGUIController {
             }
         });
     }
+
+
     @FXML
-    public void handleGoToAdminLayout() {
+    public void handleGoToAdminLayout(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminLayout.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/canteensystem/AdminLayout.fxml"));
             Parent root = loader.load();
-            AdminLoginLayoutController controller = loader.getController();
-            controller.setMain(main);
-            Stage adminStage = new Stage();
-            adminStage.setScene(new Scene(root));
-            adminStage.show();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
 

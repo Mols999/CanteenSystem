@@ -13,7 +13,7 @@
                 <TextField fx:id="usernameField" />
                 <Label text="Password:" />
                 <PasswordField fx:id="passwordField" />
-                <Button text="Login" onAction="#handleAdminLoginButtonAction" />
+                <Button text="Login" onAction="#handleLoginButtonAction" />
                 <Label fx:id="errorLabel" text="" textFill="RED" />
             </children>
         </VBox>

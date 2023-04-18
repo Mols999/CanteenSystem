@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class InventoryManagementController {
+
+    private int MedarbejderNummer;
     private Main main;
 
     @FXML
@@ -42,6 +44,10 @@ public class InventoryManagementController {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         loadInventoryTable();
+    }
+
+    public void setMedarbejderNummer(int MedarbejderNummer) {
+        this.MedarbejderNummer = MedarbejderNummer;
     }
 
     @FXML

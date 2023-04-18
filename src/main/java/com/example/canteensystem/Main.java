@@ -11,7 +11,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Main extends Application {
-
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
     private int employeeId;
 
     public void setEmployeeId(int employeeId) {
@@ -55,4 +57,5 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
 }

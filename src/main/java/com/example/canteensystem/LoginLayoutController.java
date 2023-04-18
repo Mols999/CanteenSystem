@@ -103,24 +103,6 @@ public class LoginLayoutController {
     }
 
 
-    @FXML
-    public void handleGoToAdminLayout() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminLoginLayout.fxml"));
-            Parent root = loader.load();
-            AdminLoginLayoutController controller = loader.getController();
-            controller.setMain(main);
-
-            // Get the current stage and set it in the AdminLoginLayoutController
-            Stage currentStage = (Stage) usernameField.getScene().getWindow();
-
-
-            currentStage.setScene(new Scene(root));
-            currentStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }
