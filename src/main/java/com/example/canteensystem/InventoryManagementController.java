@@ -40,8 +40,6 @@ public class InventoryManagementController {
     public void initialize() {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getItemId()));
         nameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getItemName()));
-        //       quantityColumn.setCellValueFactory(cellData -> new ReadOnlyIntegerWrapper(cellData.getValue().getItemQuantity()));
-//        nameColumn.setCellValueFactory(new PropertyValueFactory<>("vareNavn"));
         quantityColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getItemQuantity()));
 
 
