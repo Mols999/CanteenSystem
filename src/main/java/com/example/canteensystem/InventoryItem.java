@@ -1,45 +1,37 @@
 package com.example.canteensystem;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class InventoryItem {
-    private SimpleStringProperty firmaId;
-    private SimpleStringProperty firma;
-    private SimpleStringProperty vareId;
-    private SimpleStringProperty vareNavn;
-    private SimpleIntegerProperty quantity;
-    private SimpleDoubleProperty prisPerEnhed;
+    private String itemId;
+    private String itemName;
+    private String itemQuantity;
 
-    public InventoryItem(String firmaId, String firma, String vareId, String vareNavn, int quantity) {
-        this.firmaId = new SimpleStringProperty(firmaId);
-        this.firma = new SimpleStringProperty(firma);
-        this.vareId = new SimpleStringProperty(vareId);
-        this.vareNavn = new SimpleStringProperty(vareNavn);
-        this.quantity = new SimpleIntegerProperty(quantity);
-    }
-    public String getFirmaId() {
-        return firmaId.get();
+    public InventoryItem(String itemId, String itemName, String itemQuantity) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemQuantity = itemQuantity;
     }
 
-    public String getFirma() {
-        return firma.get();
+    public String getItemId() {
+        return itemId;
     }
 
-    public String getVareId() {
-        return vareId.get();
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public String getVareNavn() {
-        return vareNavn.get();
+    public String getItemName() {
+        return itemName;
     }
 
-    public int getQuantity() {
-        return quantity.get();
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public double getPrisPerEnhed() {
-        return prisPerEnhed.get();
+    public String getItemQuantity() {
+        return itemQuantity;
+    }
+
+    public void setItemQuantity(String itemQuantity) {
+        this.itemQuantity = itemQuantity;
     }
 }

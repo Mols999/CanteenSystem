@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class Main extends Application {
     public Stage getPrimaryStage() {
@@ -35,15 +34,15 @@ public class Main extends Application {
     public class DatabaseConnectionTest {
         public static void main(String[] args) {
             try {
-                Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
+                Connection con = DB.DatabaseConnector.getConnection();
 
-                if (connection != null) {
+                if (con != null) {
                     System.out.println("Database connection successful!");
                 } else {
                     System.out.println("Failed to establish a database connection.");
                 }
 
-                connection.close();
+                con.close();
             } catch (Exception e) {
                 System.out.println("Error while connecting to the database:");
                 e.printStackTrace();

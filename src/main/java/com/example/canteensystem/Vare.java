@@ -1,7 +1,6 @@
 package com.example.canteensystem;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Vare {
@@ -22,8 +21,8 @@ public class Vare {
         boolean success = false;
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
-            Statement statement = connection.createStatement();
+            Connection con = DB.DatabaseConnector.getConnection();
+            Statement statement = con.createStatement();
 
             String updateStockSql = "UPDATE Vare SET Antal = Antal - " + purchasedQuantity + " WHERE VareId = " + this.vareId;
             int rowsAffected = statement.executeUpdate(updateStockSql);
@@ -33,7 +32,7 @@ public class Vare {
                 this.antal -= purchasedQuantity;
             }
 
-            connection.close();
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

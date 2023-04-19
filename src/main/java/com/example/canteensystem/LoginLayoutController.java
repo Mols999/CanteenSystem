@@ -1,7 +1,9 @@
 package com.example.canteensystem;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +14,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -77,8 +78,8 @@ public class LoginLayoutController {
         Medarbejder medarbejder = null;
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
-            Statement statement = connection.createStatement();
+            Connection con = DB.DatabaseConnector.getConnection();
+            Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Medarbejder");
 
             while (resultSet.next()) {
@@ -94,7 +95,7 @@ public class LoginLayoutController {
                 }
             }
 
-            connection.close();
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,8 +103,18 @@ public class LoginLayoutController {
         return medarbejder;
     }
 
-
-
+    @FXML
+    public void handleGoToAdminLayout(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/canteensystem/AdminLayout.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

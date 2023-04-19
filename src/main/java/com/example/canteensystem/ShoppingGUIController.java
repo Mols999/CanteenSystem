@@ -35,7 +35,7 @@ public class ShoppingGUIController {
 
     public void initialize() {
         try {
-            String dbUrl = "jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen";
+            String dbUrl = "jdbc:sqlserver://DESKTOP-E17BO7D;databaseName=dbCanteen";
             String user = "sa";
             String password = "1234";
             purchase = new Purchase(dbUrl, user, password);

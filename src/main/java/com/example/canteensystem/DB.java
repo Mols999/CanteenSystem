@@ -52,7 +52,7 @@ public class DB {
 
     public class DatabaseConnector {
 
-        private static final String CONNECTION_URL = "jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234";
+        private static final String CONNECTION_URL = "jdbc:sqlserver://DESKTOP-E17BO7D;databaseName=dbCanteen;user=sa;password=1234";
 
         public static Connection getConnection() {
             Connection connection = null;
@@ -67,7 +67,7 @@ public class DB {
 
     private static void connect() {
         try {
-            con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8:"+port+";databaseName="+databaseName, userName, password);
+            con = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-E17BO7D:"+port+";databaseName="+databaseName, userName, password);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }

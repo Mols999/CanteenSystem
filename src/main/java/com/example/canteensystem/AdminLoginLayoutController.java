@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -73,14 +72,14 @@ public class AdminLoginLayoutController {
         Admin admin = null;
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
-            Statement statement = connection.createStatement();
+            Connection con = DB.DatabaseConnector.getConnection();
+            Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Admin");
 
             while (resultSet.next()) {
-                if (resultSet.getString("MedarbejderNummer").equals(username) && resultSet.getString("Password").equals(password)) {
+                if (resultSet.getString("AdminNummer").equals(username) && resultSet.getString("Password").equals(password)) {
                     admin = new Admin(
-                            resultSet.getInt("MedarbejderNummer"),
+                            resultSet.getInt("AdminNummer"),
                             resultSet.getString("Fornavn"),
                             resultSet.getString("Efternavn"),
                             resultSet.getDouble("PengePaaKonto"),
@@ -90,7 +89,7 @@ public class AdminLoginLayoutController {
                 }
             }
 
-            connection.close();
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

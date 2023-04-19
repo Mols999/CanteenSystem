@@ -1,7 +1,6 @@
 package com.example.canteensystem;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Admin {
@@ -21,10 +20,10 @@ public class Admin {
 
     public void updateBalanceInDatabase() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-2NQ6KUQ8;databaseName=dbCanteen;user=sa;password=1234");
-            Statement statement = connection.createStatement();
+            Connection con = DB.DatabaseConnector.getConnection();
+            Statement statement = con.createStatement();
             statement.executeUpdate("UPDATE Admin SET PengePaaKonto = " + getPengePaaKonto() + " WHERE MedarbejderNummer = " + getMedarbejderNummer());
-            connection.close();
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
